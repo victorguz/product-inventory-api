@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
@@ -22,6 +26,9 @@ export class ProductsService {
   }
 
   async findOne(id: number): Promise<Product> {
+    if (!id) {
+      throw new BadRequestException('Id is required');
+    }
     const product = await this.productRepository.findOneBy({ id });
     if (!product) {
       throw new NotFoundException('Product not found');
@@ -34,10 +41,7 @@ export class ProductsService {
     updateProductDto: UpdateProductDto,
   ): Promise<Product> {
     const product = await this.findOne(id);
-    await this.productRepository.update(
-      product.id,
-      updateProductDto,
-    );
+    await this.productRepository.update(product.id, updateProductDto);
     return this.findOne(product.id);
   }
 

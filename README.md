@@ -11,4 +11,4 @@
  - Vaya a la raiz del proyecto y ejecute el comando ```npm install``` esto instalará las dependencias necesarias para ejecutar y compilar el sistema.
  - En la raiz del proyecto ejecute el comando ```docker compose up```. Esto creará una base de datos de PostgreSQL accesible en el puerto 7000. Cambielo si encuentra algún conflicto.
  - En otra consola ejecute el comando ```nest start``` esto ejecutará el aplicativo nest y tendrá disponible su acceso a traves de [http://localhost:3001/](http://localhost:3001/)
- - En caso de percibir algún error con su base de datos Postgres de Docker puede utilizar la suya propia actualizando el archivo ```src\core\database.config.ts```
+ - En caso de percibir algún error con su base de datos Postgres de Docker puede utilizar la suya propia actualizando el archivo ```src\core\database.config.ts```. Tenga en cuenta que en un caso de despliegue en producción es preferible utilizar variables de entorno para las claves de acceso.
