@@ -34,11 +34,11 @@ export class ProductsService {
     updateProductDto: UpdateProductDto,
   ): Promise<Product> {
     const product = await this.findOne(id);
-    const updateResult = await this.productRepository.update(
+    await this.productRepository.update(
       product.id,
       updateProductDto,
     );
-    return updateResult.raw;
+    return this.findOne(product.id);
   }
 
   async remove(id: number): Promise<Product> {
