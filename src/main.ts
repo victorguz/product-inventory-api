@@ -24,8 +24,8 @@ async function bootstrap() {
   
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   const config = new DocumentBuilder()
-    .setTitle('Vyva Backend')
-    .setDescription('Description...')
+    .setTitle('Product inventory')
+    .setDescription('Nestjs product inventory API with PostgreSQL, TypeORM & Swagger')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
