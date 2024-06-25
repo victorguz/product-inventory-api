@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindOperator, Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -21,8 +21,20 @@ export class ProductsService {
     return this.productRepository.save(product);
   }
 
-  findAll(): Promise<Product[]> {
-    return this.productRepository.find();
+  findAll(pageSize: number, pageNumber: number): Promise<Product[]> {
+    return this.productRepository.find({ take: pageSize, skip: pageNumber });
+  }
+
+  async findByName(nombre: string): Promise<Product> {
+    if (!nombre) {
+      throw new BadRequestException('nombre is required');
+    }
+
+    const product = await this.productRepository.findOneBy({ nombre });
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
+    return product;
   }
 
   async findOne(id: number): Promise<Product> {

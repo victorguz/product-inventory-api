@@ -6,7 +6,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-
+/**
+ * Paginación en listAll 
+ * Instalar JWT
+ * Buscar por nombre OK
+ */
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
@@ -31,6 +35,9 @@ export class Product {
 
   @Column({ type: 'int', nullable: false })
   cantidad: number;
+
+  @Column({ type: 'char', nullable: false,default:"A" })
+  ubicacion: 'B' | 'A';
 
   @CreateDateColumn({ type: 'timestamptz' })
   fecha_creacion: Date;

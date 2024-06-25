@@ -8,7 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: ['log', 'debug', 'error', 'verbose', 'warn'],
     bufferLogs: true,
-    // cors,
   });
   app.setGlobalPrefix('api');
   app.use(json({ limit: '10mb' }));

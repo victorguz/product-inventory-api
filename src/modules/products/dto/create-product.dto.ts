@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsIn,
   IsInt,
   IsNotEmpty,
   IsNumber,
@@ -34,4 +35,11 @@ export class CreateProductDto {
   @Min(1)
   @ApiProperty({ description: 'The quantity of the product', example: 10 })
   cantidad: number;
+
+  @IsIn(['B', 'A'])
+  @ApiProperty({ description: 'Location of the product', example: 'A' })
+  ubicacion: 'B' | 'A';
 }
+// Paginación en listAll
+// Buscar por nombre
+// Implementar JWT
